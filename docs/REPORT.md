@@ -80,3 +80,13 @@ allocator's current reading, not a true peak. No real-time claim is made.
 ## 9. Future work
 Longer training and ViT-B/518 on a cloud GPU; multiple seeds; CAMO/CHAMELEON/NC4K generalisation; boundary/structure
 loss ablations; true-depth (sensor) experiments if aligned RGB-D COD data is obtained; systematic literature review.
+
+## 10. Findings (from the measured tables in RESULTS.md; single seed, 4 epochs, ViT-S/392)
+* **No evidence that depth fusion helps.** Full COD10K test (N=2026) S-measure: RGB-only 0.8398; reliability 0.8428; concat 0.8467; cross-attention 0.8437; gated 0.8417. The largest gap to the baseline is 0.007 (concat). With one seed and 4 epochs this is not distinguishable from run-to-run noise, so H1 is **not supported** by this pilot, and H2 (reliability helps) is **not supported** either: reliability-aware is not better than the simpler variants.
+* **Cross-attention and gated models ignore depth.** Their scores are identical to 3–4 decimals whether depth is real, withheld, shuffled, noisy or constant (e.g. cross-attention S = 0.8497 in all four conditions; gated 0.8436–0.8439). The learned gate stayed (near) closed — these models behave as RGB-only models with extra parameters. Their primary-table differences from the baseline therefore reflect training variance, not depth.
+* **Reliability-aware is nearly insensitive to depth** (S 0.8469 withheld vs 0.8428–0.8459 under degradation, N=500 subset), i.e. also mostly RGB-driven.
+* **Concat is the only variant that visibly uses depth:** shuffled depth lowers it (S 0.8368 vs 0.8433 withheld), which also shows it can be hurt by wrong depth.
+* **Subset caveat:** the depth-withheld/degraded tables use an evenly strided 500-image subset, so they are not directly comparable with the full-test table.
+* **Cost (M4/MPS, batch 1, clean run, nothing else running):** RGB-only 43 ms; multimodal with cached depth 48–49 ms; with fresh depth estimation 116–120 ms. Fusion adds 0.3–0.6 M parameters; Depth Anything V2-S adds its own network on top. The efficiency table was re-run after the first benchmark was found to be contaminated by concurrent training.
+* **Deployed models:** the app serves the RGB-only checkpoint for "RGB only" and the concat checkpoint (highest full-test S, +0.007 over baseline, not significant) for the multimodal modes.
+* **What would settle the question:** longer training (the baseline itself was still improving at epoch 4), several seeds, depth dropout during training so the network is forced to use depth, and ViT-B/518 on a GPU.
