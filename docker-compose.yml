@@ -1,0 +1,13 @@
+services:
+  cod:
+    build: .
+    ports: ["8000:8000"]
+    env_file: [.env]
+    environment:
+      COD_RGB_CHECKPOINT: /checkpoints/rgb_best.pt
+      COD_MM_CHECKPOINT: /checkpoints/multimodal_best.pt
+    volumes:
+      - ./checkpoints:/checkpoints:ro
+      - hf-cache:/models/hf
+volumes:
+  hf-cache:

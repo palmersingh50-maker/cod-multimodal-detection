@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>COD Project Dashboard</title>
+<style>
+:root{--bg:#f6f7f9;--s:#fff;--t:#14181f;--m:#667085;--l:#e3e6eb;--c:#2b59d9}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1218;--s:#181c25;--t:#e8ebf0;--m:#98a2b3;--l:#2a303c;--c:#6c8cff}}
+body{margin:0;background:var(--bg);color:var(--t);font:15px/1.5 system-ui,sans-serif}
+main{max-width:1000px;margin:auto;padding:24px 16px;display:grid;gap:16px}
+section{background:var(--s);border:1px solid var(--l);border-radius:12px;padding:16px;overflow-x:auto}
+h1{margin:0}h2{margin:0 0 8px;font-size:1.05rem}.m{color:var(--m)}
+table{border-collapse:collapse;width:100%}th,td{padding:6px 8px;border-bottom:1px solid var(--l);text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}.best{font-weight:700;color:var(--c)}
+svg{width:100%;height:240px}
+</style></head><body><main>
+<h1>Camouflaged Object Detection</h1>
+<p class="m" id="note"></p>
+<section><h2>COD10K test — measured metrics</h2><div id="t1"></div></section>
+<section><h2>Validation S-measure per epoch</h2><div id="chart"></div></section>
+<section><h2>Depth withheld / degraded (S-measure)</h2><div id="t2"></div></section>
+<section><h2>Efficiency</h2><div id="t3"></div></section>
+<script>
+const N={rgb:"RGB-only",reliability:"Reliability-aware",concat:"Concat",cross_attn:"Cross-attention",gated:"Gated"};
+const f=(x,d=4)=>x==null?"<span class=m>pending</span>":x.toFixed(d);
+fetch("data.json").then(r=>r.json()).then(D=>{
+const M=D.models,ks=Object.keys(M);document.getElementById("note").textContent="Pilot study: "+D.note+". Empty cells = not run yet.";
+const cols=[["sm","S↑"],["wf","Fβw↑"],["em","E↑"],["mae","MAE↓"],["miou","mIoU↑"],["dice","Dice↑"]];
+let h="<table><tr><th>Model</th>"+cols.map(c=>`<th>${c[1]}</th>`).join("")+"</tr>";
+for(const k of ks)h+=`<tr><td>${N[k]}</td>`+cols.map(c=>`<td>${f(M[k].test&&M[k].test[c[0]])}</td>`).join("")+"</tr>";
+t1.innerHTML=h+"</table>";
+const col=["#2b59d9","#d9482b","#1a9d5b","#b8860b","#8e44ad"];let s='<svg viewBox="0 0 600 240">',mx=1,ep=1;
+const pts=ks.map(k=>(M[k].history||[]).map(e=>[e.epoch,e.val_sm]));ep=Math.max(2,...pts.map(p=>p.length));
+const all=pts.flat().map(p=>p[1]);const lo=all.length?Math.min(...all)-.02:0,hi=all.length?Math.max(...all)+.02:1;
+pts.forEach((p,i)=>{if(!p.length)return;const xy=p.map(q=>[40+(q[0]-1)/(ep-1)*540,210-(q[1]-lo)/(hi-lo)*190]);
+s+=`<polyline fill="none" stroke="${col[i]}" stroke-width="2" points="${xy.map(a=>a.join(",")).join(" ")}"/>`+xy.map(a=>`<circle cx="${a[0]}" cy="${a[1]}" r="3" fill="${col[i]}"/>`).join("")});
+s+=`<text x="4" y="20" fill="currentColor" font-size="11">${hi.toFixed(3)}</text><text x="4" y="210" fill="currentColor" font-size="11">${lo.toFixed(3)}</text>`;
+ks.forEach((k,i)=>s+=`<text x="${50+i*115}" y="234" font-size="11" fill="${col[i]}">● ${N[k]}</text>`);chart.innerHTML=s+"</svg>";
+h="<table><tr><th>Model</th><th>Depth</th><th>No depth</th><th>Shuffled</th><th>Noise</th><th>Constant</th></tr>";
+for(const k of ks.slice(1)){const m=M[k];h+=`<tr><td>${N[k]}</td><td>${f(m.test&&m.test.sm)}</td><td>${f(m.test_nodepth&&m.test_nodepth.sm)}</td>`+["shuffle","noise","constant"].map(d=>`<td>${f(m.degrade[d]&&m.degrade[d].sm)}</td>`).join("")+"</tr>"}
+t2.innerHTML=h+"</table>";
+h="<table><tr><th>Model</th><th>Params (M)</th><th>Ckpt MB</th><th>RGB ms</th><th>MM cached ms</th><th>MM +depth ms</th></tr>";
+for(const k of ks){const b=M[k].bench,g=x=>b&&b[x]?b[x].mean_ms.toFixed(0):null;h+=`<tr><td>${N[k]}</td><td>${f(b&&b.params_m,1)}</td><td>${f(b&&b.checkpoint_mb,0)}</td><td>${f(g("rgb_only"),0)}</td><td>${f(g("multimodal_depth_cached"),0)}</td><td>${f(g("multimodal_depth_uncached"),0)}</td></tr>`}
+t3.innerHTML=h+"</table>"});
+</script></main></body></html>

@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+data/
+checkpoints/*
+!checkpoints/.gitkeep
+experiments/*/tb/
+experiments/*/*.pt
+*.pt
+*.onnx
+.env
+frontend/node_modules/
+frontend/dist/
+.DS_Store
+.claude/
+outputs/

@@ -1,0 +1,3 @@
+_base_: base.yaml
+experiment: {name: vits_cross_attn}
+model: {fusion: cross_attn}
