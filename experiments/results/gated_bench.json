@@ -1,0 +1,56 @@
+{
+  "checkpoint": "experiments/abl_gated_e4/best.pt",
+  "checkpoint_mb": 270.5429849624634,
+  "params_m": 23.612473,
+  "image_size": 392,
+  "device": "mps",
+  "hardware": {
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "machine": "arm64",
+    "python": "3.14.6",
+    "torch": "2.14.1",
+    "cpu_count": 10,
+    "cuda": false,
+    "mps": true
+  },
+  "fusion": "gated",
+  "rgb_only": {
+    "mean_ms": 45.187106831387304,
+    "p50_ms": 45.151437021559104,
+    "p95_ms": 46.481093764305115,
+    "fps": 22.130206382352245,
+    "stages_mean_ms": {
+      "preprocess_ms": 4.244733368977904,
+      "model_ms": 40.47653199716782,
+      "postprocess_ms": 0.3958557324949652,
+      "total_ms": 45.11712109864069
+    }
+  },
+  "multimodal_depth_uncached": {
+    "mean_ms": 163.85616806607382,
+    "p50_ms": 160.88320800918154,
+    "p95_ms": 181.27604810288176,
+    "fps": 6.102913377034163,
+    "stages_mean_ms": {
+      "preprocess_ms": 4.376317991409451,
+      "depth_ms": 96.93185147286083,
+      "model_ms": 61.979494435945526,
+      "postprocess_ms": 0.476227830707406,
+      "total_ms": 163.7638917309232
+    }
+  },
+  "multimodal_depth_cached": {
+    "mean_ms": 61.25894296371067,
+    "p50_ms": 61.33652100106701,
+    "p95_ms": 62.11540015647188,
+    "fps": 16.32414716317244,
+    "stages_mean_ms": {
+      "preprocess_ms": 4.1503236318628,
+      "depth_ms": 1.0630305313194792,
+      "model_ms": 55.5350639934962,
+      "postprocess_ms": 0.4335250026391198,
+      "total_ms": 61.1819431593176
+    }
+  },
+  "peak_memory_mb": 188.174072265625
+}

@@ -1,0 +1,21 @@
+{
+  "checkpoint": "experiments/abl_gated_e4/best.pt",
+  "experiment": "abl_gated_e4",
+  "fusion": "gated",
+  "depth_used": true,
+  "degrade": null,
+  "severity": 1.0,
+  "size": 392,
+  "split": "test",
+  "results": {
+    "cod10k": {
+      "sm": 0.8417146723294627,
+      "wf": 0.6679698330233216,
+      "em": 0.9102295461365605,
+      "mae": 0.03243763704325486,
+      "miou": 0.6906812741897068,
+      "dice": 0.789804721064554,
+      "n": 2026
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "checkpoint": "experiments/abl_cross_attn_e4/best.pt",
+  "experiment": "abl_cross_attn_e4",
+  "fusion": "cross_attn",
+  "depth_used": true,
+  "degrade": "shuffle",
+  "severity": 1.0,
+  "size": 392,
+  "split": "test",
+  "results": {
+    "cod10k": {
+      "sm": 0.8496502236077652,
+      "wf": 0.6823783570354028,
+      "em": 0.9175942879107601,
+      "mae": 0.02979944432502635,
+      "miou": 0.7043497204250242,
+      "dice": 0.8006141999211409,
+      "n": 500
+    }
+  }
+}

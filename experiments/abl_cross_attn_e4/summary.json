@@ -1,0 +1,19 @@
+{
+  "best_val_sm": 0.852361409026768,
+  "epochs_run": 4,
+  "train_seconds": 3208.0039961338043,
+  "hardware": {
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "machine": "arm64",
+    "python": "3.14.6",
+    "torch": "2.14.1",
+    "cpu_count": 10,
+    "cuda": false,
+    "mps": true
+  },
+  "device": "mps",
+  "params_total": 23480893,
+  "params_backbone": 22056576,
+  "n_train": 2736,
+  "n_val": 304
+}

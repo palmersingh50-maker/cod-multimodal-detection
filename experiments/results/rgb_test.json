@@ -1,0 +1,21 @@
+{
+  "checkpoint": "experiments/abl_rgb_e4/best.pt",
+  "experiment": "abl_rgb_e4",
+  "fusion": "none",
+  "depth_used": false,
+  "degrade": null,
+  "severity": 1.0,
+  "size": 392,
+  "split": "test",
+  "results": {
+    "cod10k": {
+      "sm": 0.8398321130842612,
+      "wf": 0.6624494788547421,
+      "em": 0.9103536508458148,
+      "mae": 0.03283857390510409,
+      "miou": 0.6903634081852608,
+      "dice": 0.7898174137482056,
+      "n": 2026
+    }
+  }
+}

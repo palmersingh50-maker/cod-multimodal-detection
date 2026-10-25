@@ -1,0 +1,21 @@
+{
+  "checkpoint": "experiments/abl_reliability_e4/best.pt",
+  "experiment": "abl_reliability_e4",
+  "fusion": "reliability",
+  "depth_used": true,
+  "degrade": "shuffle",
+  "severity": 1.0,
+  "size": 392,
+  "split": "test",
+  "results": {
+    "cod10k": {
+      "sm": 0.8428396809532512,
+      "wf": 0.6672198646251327,
+      "em": 0.9082257266014496,
+      "mae": 0.03205143440504348,
+      "miou": 0.6919340989972811,
+      "dice": 0.789812224110716,
+      "n": 500
+    }
+  }
+}

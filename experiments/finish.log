@@ -1,0 +1,14 @@
+cod10k {'sm': 0.8417, 'wf': 0.668, 'em': 0.9102, 'mae': 0.0324, 'miou': 0.6907, 'dice': 0.7898, 'n': 2026}
+cod10k {'sm': 0.8436, 'wf': 0.6715, 'em': 0.9138, 'mae': 0.0313, 'miou': 0.6951, 'dice': 0.7911, 'n': 500}
+cod10k {'sm': 0.8439, 'wf': 0.6715, 'em': 0.9134, 'mae': 0.0313, 'miou': 0.6954, 'dice': 0.7913, 'n': 500}
+cod10k {'sm': 0.8439, 'wf': 0.6715, 'em': 0.9134, 'mae': 0.0313, 'miou': 0.6954, 'dice': 0.7913, 'n': 500}
+cod10k {'sm': 0.8439, 'wf': 0.6714, 'em': 0.9133, 'mae': 0.0313, 'miou': 0.6954, 'dice': 0.7913, 'n': 500}
+rgb_only {'mean_ms': np.float64(45.2), 'p50_ms': np.float64(45.2), 'p95_ms': np.float64(46.5), 'fps': np.float64(22.1)}
+multimodal_depth_uncached {'mean_ms': np.float64(163.9), 'p50_ms': np.float64(160.9), 'p95_ms': np.float64(181.3), 'fps': np.float64(6.1)}
+multimodal_depth_cached {'mean_ms': np.float64(61.3), 'p50_ms': np.float64(61.3), 'p95_ms': np.float64(62.1), 'fps': np.float64(16.3)}
+wrote docs/RESULTS.md
+best fusion: concat
+checkpoints/multimodal.pt: 89 MB (from 268 MB)
+wrote dashboard/data.json
+..........................................                               [100%]
+42 passed in 23.65s

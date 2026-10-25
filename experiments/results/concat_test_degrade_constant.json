@@ -1,0 +1,21 @@
+{
+  "checkpoint": "experiments/abl_concat_e4/best.pt",
+  "experiment": "abl_concat_e4",
+  "fusion": "concat",
+  "depth_used": true,
+  "degrade": "constant",
+  "severity": 1.0,
+  "size": 392,
+  "split": "test",
+  "results": {
+    "cod10k": {
+      "sm": 0.8446565130180759,
+      "wf": 0.6777414766440426,
+      "em": 0.9095429170118182,
+      "mae": 0.030515266341445687,
+      "miou": 0.6873924998298137,
+      "dice": 0.7842665685076503,
+      "n": 500
+    }
+  }
+}

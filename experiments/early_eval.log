@@ -1,0 +1,27 @@
+cod10k {'sm': 0.8398, 'wf': 0.6624, 'em': 0.9104, 'mae': 0.0328, 'miou': 0.6904, 'dice': 0.7898, 'n': 2026}
+rgb_only {'mean_ms': np.float64(105.7), 'p50_ms': np.float64(106.0), 'p95_ms': np.float64(120.5), 'fps': np.float64(9.5)}
+cod10k {'sm': 0.8428, 'wf': 0.6675, 'em': 0.9086, 'mae': 0.0324, 'miou': 0.6925, 'dice': 0.7908, 'n': 2026}
+cod10k {'sm': 0.8469, 'wf': 0.6696, 'em': 0.9086, 'mae': 0.0312, 'miou': 0.6942, 'dice': 0.7911, 'n': 500}
+cod10k {'sm': 0.8428, 'wf': 0.6672, 'em': 0.9082, 'mae': 0.0321, 'miou': 0.6919, 'dice': 0.7898, 'n': 500}
+cod10k {'sm': 0.8459, 'wf': 0.6712, 'em': 0.9107, 'mae': 0.0314, 'miou': 0.6978, 'dice': 0.794, 'n': 500}
+cod10k {'sm': 0.8447, 'wf': 0.6693, 'em': 0.9098, 'mae': 0.0318, 'miou': 0.6955, 'dice': 0.7925, 'n': 500}
+rgb_only {'mean_ms': np.float64(101.1), 'p50_ms': np.float64(97.2), 'p95_ms': np.float64(124.1), 'fps': np.float64(9.9)}
+multimodal_depth_uncached {'mean_ms': np.float64(296.9), 'p50_ms': np.float64(292.6), 'p95_ms': np.float64(378.0), 'fps': np.float64(3.4)}
+multimodal_depth_cached {'mean_ms': np.float64(123.4), 'p50_ms': np.float64(114.7), 'p95_ms': np.float64(172.0), 'fps': np.float64(8.1)}
+cod10k {'sm': 0.8467, 'wf': 0.684, 'em': 0.9117, 'mae': 0.0308, 'miou': 0.6942, 'dice': 0.7923, 'n': 2026}
+cod10k {'sm': 0.8433, 'wf': 0.6762, 'em': 0.9087, 'mae': 0.0308, 'miou': 0.6865, 'dice': 0.7838, 'n': 500}
+cod10k {'sm': 0.8368, 'wf': 0.666, 'em': 0.9065, 'mae': 0.0321, 'miou': 0.67, 'dice': 0.7718, 'n': 500}
+cod10k {'sm': 0.8476, 'wf': 0.6839, 'em': 0.9132, 'mae': 0.0297, 'miou': 0.6939, 'dice': 0.7886, 'n': 500}
+cod10k {'sm': 0.8447, 'wf': 0.6777, 'em': 0.9095, 'mae': 0.0305, 'miou': 0.6874, 'dice': 0.7843, 'n': 500}
+rgb_only {'mean_ms': np.float64(111.2), 'p50_ms': np.float64(106.4), 'p95_ms': np.float64(149.8), 'fps': np.float64(9.0)}
+multimodal_depth_uncached {'mean_ms': np.float64(302.8), 'p50_ms': np.float64(291.8), 'p95_ms': np.float64(373.7), 'fps': np.float64(3.3)}
+multimodal_depth_cached {'mean_ms': np.float64(118.8), 'p50_ms': np.float64(111.0), 'p95_ms': np.float64(180.5), 'fps': np.float64(8.4)}
+cod10k {'sm': 0.8437, 'wf': 0.6741, 'em': 0.9129, 'mae': 0.0313, 'miou': 0.6927, 'dice': 0.7918, 'n': 2026}
+cod10k {'sm': 0.8497, 'wf': 0.6824, 'em': 0.9176, 'mae': 0.0298, 'miou': 0.7044, 'dice': 0.8006, 'n': 500}
+cod10k {'sm': 0.8497, 'wf': 0.6824, 'em': 0.9176, 'mae': 0.0298, 'miou': 0.7043, 'dice': 0.8006, 'n': 500}
+cod10k {'sm': 0.8497, 'wf': 0.6824, 'em': 0.9176, 'mae': 0.0298, 'miou': 0.7043, 'dice': 0.8006, 'n': 500}
+cod10k {'sm': 0.8497, 'wf': 0.6824, 'em': 0.9176, 'mae': 0.0298, 'miou': 0.7043, 'dice': 0.8006, 'n': 500}
+rgb_only {'mean_ms': np.float64(106.3), 'p50_ms': np.float64(103.3), 'p95_ms': np.float64(124.9), 'fps': np.float64(9.4)}
+multimodal_depth_uncached {'mean_ms': np.float64(297.1), 'p50_ms': np.float64(286.1), 'p95_ms': np.float64(388.0), 'fps': np.float64(3.4)}
+multimodal_depth_cached {'mean_ms': np.float64(122.5), 'p50_ms': np.float64(118.2), 'p95_ms': np.float64(151.7), 'fps': np.float64(8.2)}
+skip gated (not finished)

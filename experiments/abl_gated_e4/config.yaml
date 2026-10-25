@@ -1,0 +1,58 @@
+experiment:
+  name: abl_gated_e4
+  seed: 42
+  output_dir: experiments
+data:
+  root: ~/Downloads/COD10K-v3
+  depth_cache: data/cache/depth
+  image_size: 392
+  val_fraction: 0.1
+  split_seed: 42
+  num_workers: 4
+  train_limit: null
+  val_limit: null
+  test_limit: null
+depth:
+  model: depth-anything/Depth-Anything-V2-Small-hf
+  input_size: 518
+model:
+  backbone: facebook/dinov2-small
+  layers:
+  - 3
+  - 6
+  - 9
+  - 12
+  embed_dim: 128
+  fusion: gated
+  fusion_levels:
+  - 0
+  - 1
+  - 2
+  - 3
+  num_heads: 4
+  depth_channels: 48
+  boundary_head: false
+train:
+  epochs: 4
+  batch_size: 4
+  accum_steps: 1
+  lr_backbone: 1.0e-05
+  lr_head: 0.0001
+  weight_decay: 0.0001
+  warmup_epochs: 1
+  grad_clip: 1.0
+  amp: auto
+  backbone_freeze_epochs: 0
+  backbone_trainable_blocks: null
+  depth_dropout: 0.0
+  early_stop_patience: 8
+  val_metric: sm
+  max_steps_per_epoch: null
+  max_bad_steps: 20
+loss:
+  bce: 1.0
+  dice: 1.0
+  structure: 0.0
+  boundary: 0.0
+eval:
+  threshold: 0.5
