@@ -32,9 +32,12 @@ def main():
     model, cfg = load_checkpoint(a.checkpoint, dev)
     use_depth = cfg["model"]["fusion"] != "none" and not a.no_depth
     d, size = cfg["data"], a.size or cfg["data"]["image_size"]
-    sets = {"cod10k": build_samples(d, a.split, cfg["experiment"]["seed"])[: a.limit]}
+    def sub(x):  # evenly strided subset (not the first N, which would be one category)
+        return x[:: max(1, len(x) // a.limit)][: a.limit] if a.limit else x
+
+    sets = {"cod10k": sub(build_samples(d, a.split, cfg["experiment"]["seed"]))}
     for name, im, mk in a.extra:
-        sets[name] = pair_folder(Path(im), Path(mk))[: a.limit]
+        sets[name] = sub(pair_folder(Path(im), Path(mk)))
     results = {}
     for name, samples in sets.items():
         ds = CODDataset(samples, name, size, train=False, use_depth=use_depth, depth_cache=d["depth_cache"])
