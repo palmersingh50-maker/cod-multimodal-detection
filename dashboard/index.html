@@ -20,7 +20,7 @@ svg{width:100%;height:240px}
 <section><h2>Efficiency</h2><div id="t3"></div></section>
 <script>
 const N={rgb:"RGB-only",reliability:"Reliability-aware",concat:"Concat",cross_attn:"Cross-attention",gated:"Gated"};
-const f=(x,d=4)=>x==null?"<span class=m>pending</span>":x.toFixed(d);
+const f=(x,d=4,na)=>x==null?(na?"<span class=m>–</span>":"<span class=m>pending</span>"):x.toFixed(d);
 fetch("data.json").then(r=>r.json()).then(D=>{
 const M=D.models,ks=Object.keys(M);document.getElementById("note").textContent="Pilot study: "+D.note+". Empty cells = not run yet.";
 const cols=[["sm","S↑"],["wf","Fβw↑"],["em","E↑"],["mae","MAE↓"],["miou","mIoU↑"],["dice","Dice↑"]];
@@ -38,6 +38,6 @@ h="<table><tr><th>Model</th><th>Depth</th><th>No depth</th><th>Shuffled</th><th>
 for(const k of ks.slice(1)){const m=M[k];h+=`<tr><td>${N[k]}</td><td>${f(m.test&&m.test.sm)}</td><td>${f(m.test_nodepth&&m.test_nodepth.sm)}</td>`+["shuffle","noise","constant"].map(d=>`<td>${f(m.degrade[d]&&m.degrade[d].sm)}</td>`).join("")+"</tr>"}
 t2.innerHTML=h+"</table>";
 h="<table><tr><th>Model</th><th>Params (M)</th><th>Ckpt MB</th><th>RGB ms</th><th>MM cached ms</th><th>MM +depth ms</th></tr>";
-for(const k of ks){const b=M[k].bench,g=x=>b&&b[x]?b[x].mean_ms:null;h+=`<tr><td>${N[k]}</td><td>${f(b&&b.params_m,1)}</td><td>${f(b&&b.checkpoint_mb,0)}</td><td>${f(g("rgb_only"),0)}</td><td>${f(g("multimodal_depth_cached"),0)}</td><td>${f(g("multimodal_depth_uncached"),0)}</td></tr>`}
+for(const k of ks){const b=M[k].bench,g=x=>b&&b[x]?b[x].mean_ms:null;h+=`<tr><td>${N[k]}</td><td>${f(b&&b.params_m,1)}</td><td>${f(b&&b.checkpoint_mb,0)}</td><td>${f(g("rgb_only"),0)}</td><td>${f(g("multimodal_depth_cached"),0,k==="rgb")}</td><td>${f(g("multimodal_depth_uncached"),0,k==="rgb")}</td></tr>`}
 t3.innerHTML=h+"</table>"});
 </script></main></body></html>
